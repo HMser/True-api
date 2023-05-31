@@ -15,9 +15,7 @@ const installationId = 'a1i0W--fmBw6i-qFCeE3bBYdNcsJTv7LUI1L1PAwdNOKHLrCRe0JCfu1
 
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
-});
-
-app.post('/search', async (req, res) => {
+});app.post('/search', async (req, res) => {
   try {
     const { number } = req.body;
 
@@ -28,13 +26,14 @@ app.post('/search', async (req, res) => {
     };
 
     const response = await truecallerjs.search(search_data);
-    res.json(response.json());
+    if (response.error) {
+      console.error('Truecaller API Error:', response.error);
+      res.status(500).json({ error: 'An error occurred while searching the number.' });
+    } else {
+      res.json(response.json());
+    }
   } catch (error) {
     console.error('Error:', error.message);
     res.status(500).json({ error: 'An error occurred while searching the number.' });
   }
-});
-
-app.listen(port, () => {
-  console.log(`Server running on port ${port}`);
 });

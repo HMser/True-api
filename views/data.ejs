@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Truecaller Search</title>
+    <link rel="stylesheet" type="text/css" href="/styles.css">
+</head>
+<body>
+    <h1>Truecaller Search Results</h1>
+    <form action="/" method="post">
+    <input type="text" name="myfile" placeholder="Enter phone number">
+    <button type="submit">Search</button>
+</form>
+
+    <div>
+        <h2>Name: <%= name %></h2>
+        <p>Carrier: <%= carrier %></p>
+        <p>City: <%= city %></p>
+        <p>Timezone: <%= timezone %></p>
+        <p>Email: <%= email %></p>
+        <p>Dialing Code: <%= code %></p>
+    </div>
+</body>
+</html>
